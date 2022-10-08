@@ -1,0 +1,7 @@
+node_modules
+thunder-tests
+Dockerfile
+.git
+.gitignore
+docker-compose*
+.cache

@@ -1,0 +1,21 @@
+version: "3"
+
+# here we list our containers
+services:
+  express-api:
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+
+  mongodb:
+    image: mongo
+    environment:
+      # this env variables are required
+      MONGO_INITDB_ROOT_USERNAME: cesar
+      MONGO_INITDB_ROOT_PASSWORD: cesar
+    volumes:
+      - mongo-db:/data/db
+
+volumes:
+  mongo-db:

@@ -1,0 +1,12 @@
+version: "3"
+
+# here we list our containers
+services:
+  express-api:
+    build:
+      # args can be change during build
+      args:
+        ENV: production
+    environment:
+      - NODE_ENV=production
+    command: yarn start:prod

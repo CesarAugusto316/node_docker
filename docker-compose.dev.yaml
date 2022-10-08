@@ -1,0 +1,11 @@
+version: "3"
+
+# here we list our containers
+services:
+  express-api:
+    volumes:
+      - .:/app:ro
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: yarn start:dev
