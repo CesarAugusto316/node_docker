@@ -1,23 +1,28 @@
 # LarnU Fullstack Bootcamp
 
-## TODO REST API
+## NODE_DOCKER REST API WITH REDIS AND MONGO DBS
 
-Express, node, jest testing, supertest, github actions ci/cd postgres, sequelize and much more.
+Express, node, jest testing, supertest, github actions ci/cd postgres, mongoDB, redisDB, mongoos and much more.
 
 - To create, delete or update a TODO requires authentication.
 - Protected endpoints.
+- RedisStore, express-session based athentication
 
 <br>
 
-## Populate .env and prod.env with your own variables environment
-
-Like .env_sample file. Yout need 3 postgreSQL databases for development, test and production environments.
+## BLOG API
 
 To start your dev environment on the cli run:
 
 - docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml up
 
+- docker logs --follow node_docker-express-api-1
+
+To stop:
+
 - docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml down
+
+- docker-compose stop
 
 <br>
 
