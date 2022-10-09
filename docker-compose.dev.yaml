@@ -2,10 +2,28 @@ version: "3"
 
 # here we list our containers
 services:
+
   express-api:
     volumes:
       - .:/app:ro
       - /app/node_modules
     environment:
-      - NODE_ENV=development
+      NODE_ENV: development
+      DB_IP: mongodb
+      DB_USER: cesar
+      DB_PASS: cesar
+      DB_PORT: 27017
+      REDIS_IP: redisdb
+      REDIS_PORT: 6379
+      SESSION_SECRET: '12312hkskdhkasdasdas'
     command: yarn start:dev
+
+  mongodb:
+    environment:
+      # this env variables are required for mongodb
+      MONGO_INITDB_ROOT_USERNAME: cesar
+      MONGO_INITDB_ROOT_PASSWORD: cesar
+    volumes:
+      # we persist any data inside the container into our localComputer
+      # if we delete the container we can bring our data back again
+      - mongo-db:/data/db

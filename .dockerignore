@@ -5,3 +5,4 @@ Dockerfile
 .gitignore
 docker-compose*
 .cache
+README.md

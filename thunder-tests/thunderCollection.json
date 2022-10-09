@@ -4,6 +4,21 @@
     "colName": "node_docker",
     "created": "2022-10-05T22:49:20.433Z",
     "sortNum": 10000,
-    "folders": []
+    "folders": [
+      {
+        "_id": "82b3cebe-18f3-4cd0-8095-77f37fe9f23f",
+        "name": "posts",
+        "containerId": "",
+        "created": "2022-10-09T00:19:03.216Z",
+        "sortNum": 10000
+      },
+      {
+        "_id": "b254c41a-b4dd-4b9e-806b-21cbc1c57abd",
+        "name": "users",
+        "containerId": "",
+        "created": "2022-10-09T02:42:02.564Z",
+        "sortNum": 20000
+      }
+    ]
   }
 ]
