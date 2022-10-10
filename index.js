@@ -3,6 +3,7 @@ const { connectDb } = require('./config/connectDb.js');
 const config = require('./config/config.js');
 const { postsRouter } = require('./routes/posts.router.js');
 const { authRouter } = require('./routes/auth.router.js');
+const { isAuthenticated } = require('./middlewares/isAuthenticated.js');
 const { defaultErrorHandler } = require('./middlewares/defaultErrorHandler.js');
 const session = require('express-session');
 const redisDb = require('redis');
@@ -30,7 +31,14 @@ connectDb();
 
 // middlewares
 app.use(express.json());
-// we use our redis database to store a express-session
+
+/**
+ * 
+ * We use our redis database to store a express-session.
+ * Every user request will cause that our redis database stores 
+ * a cookie in. We can write more info related to that session
+ * through {req.session}
+ */
 app.use(session({
   store: new RedisStore({ client: redisClient }),
   secret: config.session.secret,
@@ -39,11 +47,11 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     httpOnly: true,
-    maxAge: 30_000
+    maxAge: 600_000
   }
 }));
 
-app.use('/api/v1/posts', postsRouter);
+app.use('/api/v1/posts', isAuthenticated, postsRouter);
 app.use('/api/v1/users', authRouter);
 app.use(defaultErrorHandler);
 

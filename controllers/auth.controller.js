@@ -34,6 +34,13 @@ exports.signUp = async (req, res, next) => {
       const user = await User.create({ name: req.body.name, password: hash });
 
       if (user) {
+        /**
+         * 
+         * Weather we login or signup we add the user to our current session
+         * So we can access that user info whenever we go to any endpoint that
+         * requires user authentication.
+         */
+        req.session.user = user;
         res.status(201).json({
           message: 'new user created',
           user
@@ -60,12 +67,17 @@ exports.logIn = async (req, res, next) => {
 
       if (userFound) {
         const hasValidPassword = bcrypt.compareSync(req.body.password, userFound.password);
-        // here we should create a session ?
 
         if (hasValidPassword) {
+          /**
+           * 
+           * We add a user key-value to our redis db register session
+           * and a cookie with same information is send to the browser client
+           * as well.
+           */
           req.session.user = userFound;
-          // we should return a sessionID as a cookie
-          return res.status(201).json({
+
+          return res.status(200).json({
             message: 'you are logged in',
             user: userFound
           });
